@@ -1,55 +1,51 @@
 # syntax=docker/dockerfile:1
 
 # ---------------------------------------------------------------------------
-# Stage 1: deps - install dependencies in their own layer so `npm install`
-# is only re-run when package*.json actually changes, not on every source
-# code edit (Docker layer caching).
+# Stage 1: deps
 # ---------------------------------------------------------------------------
 FROM node:20-slim AS deps
+
 WORKDIR /app
+
 COPY package.json package-lock.json* ./
+
 RUN npm ci
 
 # ---------------------------------------------------------------------------
-# Stage 2: builder - compiles the production build.
+# Stage 2: builder
 # ---------------------------------------------------------------------------
 FROM node:20-slim AS builder
+
 WORKDIR /app
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# NEXT_PUBLIC_* variables are inlined into the client bundle at BUILD time,
-# not read at container start - so this must be a build ARG passed via
-# docker-compose's `build.args`, not just a runtime `environment:` entry.
 ARG NEXT_PUBLIC_API_URL=http://localhost:8000
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
 RUN npm run build
 
 # ---------------------------------------------------------------------------
-# Stage 3: runner - minimal runtime image. Uses Next's "standalone" output
-# (next.config.ts: output: "standalone"), which traces and copies only the
-# node_modules actually needed at runtime - dramatically smaller than
-# shipping the full builder stage's node_modules.
+# Stage 3: runner
 # ---------------------------------------------------------------------------
 FROM node:20-slim AS runner
+
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN groupadd --gid 1000 nodeuser \
-    && useradd --uid 1000 --gid nodeuser --shell /bin/bash --create-home nodeuser
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV NODE_ENV=production \
     PORT=3000 \
     HOSTNAME=0.0.0.0
 
-COPY --from=builder --chown=nodeuser:nodeuser /app/.next/standalone ./
-COPY --from=builder --chown=nodeuser:nodeuser /app/.next/static ./.next/static
-COPY --from=builder --chown=nodeuser:nodeuser /app/public ./public
+COPY --from=builder --chown=node:node /app/.next/standalone ./
+COPY --from=builder --chown=node:node /app/.next/static ./.next/static
+COPY --from=builder --chown=node:node /app/public ./public
 
-USER nodeuser
+USER node
 
 EXPOSE 3000
 
