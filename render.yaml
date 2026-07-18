@@ -1,0 +1,60 @@
+# Render Blueprint (render.yaml) for the Legal AI Assistant.
+#
+# Render does not offer managed Qdrant or Elasticsearch, so this deploys
+# backend + frontend only. Production use on Render requires pointing
+# QDRANT_HOST/ELASTICSEARCH_HOST at managed cloud instances (Qdrant Cloud,
+# Elastic Cloud) - see DEPLOYMENT.md's "Render Deployment" section for the
+# exact env vars to set. Environment variable VALUES are never committed
+# here (see the `sync: false` markers below); set real values in the
+# Render dashboard after the blueprint creates the services.
+#
+# Usage: connect this repo in the Render dashboard -> "New Blueprint" ->
+# Render reads this file and creates both services automatically.
+
+services:
+  - type: web
+    name: legal-ai-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: standard
+    region: oregon
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: LLM_PROVIDER
+        value: anthropic
+      - key: EMBEDDING_PROVIDER
+        value: bge
+      - key: QDRANT_MODE
+        value: server
+      - key: QDRANT_HOST
+        sync: false
+      - key: QDRANT_PORT
+        value: "6333"
+      - key: KEYWORD_SEARCH_PROVIDER
+        value: elasticsearch
+      - key: ELASTICSEARCH_HOST
+        sync: false
+      - key: LOG_LEVEL
+        value: info
+      - key: GUNICORN_WORKERS
+        value: "2"
+    disk:
+      name: backend-storage
+      mountPath: /app/storage
+      sizeGB: 10
+
+  - type: web
+    name: legal-ai-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    plan: starter
+    region: oregon
+    healthCheckPath: /api/health
+    autoDeploy: true
+    dockerBuildArgs:
+      NEXT_PUBLIC_API_URL: https://legal-ai-backend.onrender.com

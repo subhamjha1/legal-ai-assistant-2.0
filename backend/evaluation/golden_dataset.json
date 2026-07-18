@@ -1,0 +1,193 @@
+[
+  {
+    "id": "q001",
+    "query": "Which court heard this case?",
+    "ground_truth_answer": "The High Court of Delhi at New Delhi heard this case.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [1],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 1, "page_end": 1}],
+    "document_type": "judgment",
+    "category": "fact_lookup"
+  },
+  {
+    "id": "q002",
+    "query": "What is the case number of this matter?",
+    "ground_truth_answer": "The case number is 1234/2024.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [1],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 1, "page_end": 1}],
+    "document_type": "judgment",
+    "category": "fact_lookup"
+  },
+  {
+    "id": "q003",
+    "query": "Who is the petitioner in this case?",
+    "ground_truth_answer": "Acme Corporation is the petitioner.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [1],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 1, "page_end": 1}],
+    "document_type": "judgment",
+    "category": "fact_lookup"
+  },
+  {
+    "id": "q004",
+    "query": "Who is the respondent in this case?",
+    "ground_truth_answer": "The State Tax Authority is the respondent.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [1],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 1, "page_end": 1}],
+    "document_type": "judgment",
+    "category": "fact_lookup"
+  },
+  {
+    "id": "q005",
+    "query": "Which judge presided over this matter?",
+    "ground_truth_answer": "The Hon'ble Justice A. Sharma presided over the matter.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [1],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 1, "page_end": 1}],
+    "document_type": "judgment",
+    "category": "fact_lookup"
+  },
+  {
+    "id": "q006",
+    "query": "What order does this appeal arise from?",
+    "ground_truth_answer": "The appeal arises from an order dated 12 March 2023 passed by the Income Tax Appellate Tribunal.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [1],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 1, "page_end": 1, "structural_label": "1."}],
+    "document_type": "judgment",
+    "category": "fact_lookup"
+  },
+  {
+    "id": "q007",
+    "query": "What did the Income Tax Appellate Tribunal originally hold?",
+    "ground_truth_answer": "The Tribunal held that the petitioner's claimed deduction under Section 80G was not admissible.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [1],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 1, "page_end": 1, "structural_label": "1."}],
+    "document_type": "judgment",
+    "category": "holding"
+  },
+  {
+    "id": "q008",
+    "query": "For which assessment year did the petitioner file its tax return?",
+    "ground_truth_answer": "The petitioner filed its tax return for assessment year 2022-23.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [2],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 2, "page_end": 2, "structural_label": "2."}],
+    "document_type": "judgment",
+    "category": "fact_lookup"
+  },
+  {
+    "id": "q009",
+    "query": "What amount of deduction did the petitioner claim under Section 80G?",
+    "ground_truth_answer": "The petitioner claimed a deduction of Rs. 5,00,000.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [2],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 2, "page_end": 2, "structural_label": "2."}],
+    "document_type": "judgment",
+    "category": "fact_lookup"
+  },
+  {
+    "id": "q010",
+    "query": "Under which statute and section did the petitioner claim the deduction?",
+    "ground_truth_answer": "The petitioner claimed the deduction under Section 80G of the Income Tax Act, 1961.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [2],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 2, "page_end": 2, "structural_label": "2."}],
+    "document_type": "judgment",
+    "category": "statutory_requirement"
+  },
+  {
+    "id": "q011",
+    "query": "Why did the Assessing Officer disallow the deduction?",
+    "ground_truth_answer": "The Assessing Officer disallowed the deduction because the donation receipt did not bear the registration number of the recipient trust, as required under sub-section (5).",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [2],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 2, "page_end": 2, "structural_label": "3."}],
+    "document_type": "judgment",
+    "category": "fact_lookup"
+  },
+  {
+    "id": "q012",
+    "query": "What does Section 80G(5)(iv) require of a donation receipt?",
+    "ground_truth_answer": "Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund bear the registration number granted by the Commissioner of Income Tax under that sub-section.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [3],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 3, "page_end": 3, "structural_label": "4."}],
+    "document_type": "judgment",
+    "category": "statutory_requirement"
+  },
+  {
+    "id": "q013",
+    "query": "What was the court's final holding on the disallowance?",
+    "ground_truth_answer": "The court held that the disallowance was not in accordance with law.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [3],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 3, "page_end": 3, "structural_label": "5."}],
+    "document_type": "judgment",
+    "category": "holding"
+  },
+  {
+    "id": "q014",
+    "query": "Why did the court find the disallowance unlawful?",
+    "ground_truth_answer": "The court found the disallowance unlawful because the petitioner had produced a valid registration certificate at the time of the assessment proceedings.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [3],
+    "expected_citations": [{"document": "sample_legal_doc_final.pdf", "page_start": 3, "page_end": 3, "structural_label": "5."}],
+    "document_type": "judgment",
+    "category": "holding"
+  },
+  {
+    "id": "q015",
+    "query": "What tax dispute is at the center of this case, and between whom?",
+    "ground_truth_answer": "The dispute is between Acme Corporation (petitioner) and the State Tax Authority (respondent) over a disallowed Section 80G donation deduction.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [1, 2],
+    "expected_citations": [
+      {"document": "sample_legal_doc_final.pdf", "page_start": 1, "page_end": 1},
+      {"document": "sample_legal_doc_final.pdf", "page_start": 2, "page_end": 2}
+    ],
+    "document_type": "judgment",
+    "category": "synthesis",
+    "notes": "Requires synthesizing facts from both page 1 (parties) and page 2 (the dispute)."
+  },
+  {
+    "id": "q016",
+    "query": "Summarize the court's overall reasoning in this judgment.",
+    "ground_truth_answer": "The Tribunal had disallowed the petitioner's Section 80G deduction because the donation receipt lacked a registration number required under sub-section (5). The court found that this requirement (registration number granted by the Commissioner under Section 80G(5)(iv)) was in fact satisfied, since the petitioner had produced a valid registration certificate during assessment, and therefore held the disallowance was not in accordance with law.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [1, 2, 3],
+    "expected_citations": [
+      {"document": "sample_legal_doc_final.pdf", "page_start": 1, "page_end": 1},
+      {"document": "sample_legal_doc_final.pdf", "page_start": 2, "page_end": 2},
+      {"document": "sample_legal_doc_final.pdf", "page_start": 3, "page_end": 3}
+    ],
+    "document_type": "judgment",
+    "category": "synthesis",
+    "notes": "The hardest question in the set - requires drawing on all three pages coherently."
+  },
+  {
+    "id": "q017",
+    "query": "What amount of penalty was imposed on the petitioner in this case?",
+    "ground_truth_answer": "I could not find supporting evidence.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [],
+    "expected_citations": [],
+    "document_type": "judgment",
+    "category": "no_evidence_check",
+    "notes": "No penalty is mentioned anywhere in the document - tests the anti-hallucination fallback."
+  },
+  {
+    "id": "q018",
+    "query": "Who represented the respondent as counsel in this case?",
+    "ground_truth_answer": "I could not find supporting evidence.",
+    "source_document": "sample_legal_doc_final.pdf",
+    "relevant_pages": [],
+    "expected_citations": [],
+    "document_type": "judgment",
+    "category": "no_evidence_check",
+    "notes": "Counsel names are never mentioned in the document."
+  }
+]

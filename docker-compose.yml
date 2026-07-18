@@ -1,0 +1,139 @@
+# Production-shaped docker-compose for the Legal AI Assistant.
+#
+# Deliberately does NOT include Postgres: nothing in this application uses
+# a relational database today (document metadata lives in JSON files /
+# Qdrant payload / the BM25 corpus - see backend/README.md). Adding an
+# unused Postgres container would be exactly the kind of placeholder
+# infrastructure this project has avoided throughout; add it back if/when
+# a real feature needs it (e.g. user accounts, audit logs).
+#
+# NOTE ON THIS SANDBOX: this compose file could not be built/run here (no
+# Docker daemon or CLI is available in this development sandbox, and the
+# network allow-list excludes Docker Hub / Elastic's registries anyway -
+# see backend/README.md's Milestone 4 section for the same constraint).
+# Every image, healthcheck, and env var below is real and internally
+# consistent with the Dockerfiles and application config, but it needs to
+# be verified with `docker compose up` on a machine with Docker installed.
+#
+# Usage:
+#   cp backend/.env.example backend/.env        # fill in ANTHROPIC_API_KEY etc.
+#   docker compose up -d --build
+#   curl http://localhost:8000/health
+#   open http://localhost:3000
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.11.3
+    restart: unless-stopped
+    ports:
+      - "6333:6333" # HTTP API
+      - "6334:6334" # gRPC API
+    volumes:
+      - qdrant_data:/qdrant/storage
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/6333' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - legal-ai-network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.1
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 20s
+    networks:
+      - legal-ai-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      qdrant:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env
+    environment:
+      # Overrides that only make sense inside this compose network - point
+      # at the sibling containers by service name, not localhost. Anything
+      # not listed here (ANTHROPIC_API_KEY, EMBEDDING_PROVIDER, etc.) comes
+      # from backend/.env via env_file above.
+      QDRANT_MODE: server
+      QDRANT_HOST: qdrant
+      QDRANT_PORT: "6333"
+      KEYWORD_SEARCH_PROVIDER: elasticsearch
+      ELASTICSEARCH_HOST: http://elasticsearch:9200
+    ports:
+      - "8000:8000"
+    volumes:
+      # Uploaded PDFs and parsed/chunked JSON - the actual user data. Must
+      # persist across container restarts and redeploys.
+      - backend_uploads:/app/storage/uploads
+      - backend_processed:/app/storage/processed
+      # BGE model weights, if EMBEDDING_PROVIDER=bge - persisting this cache
+      # means the ~1.3GB download only happens once, not on every restart.
+      - model_cache:/home/appuser/.cache/huggingface
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    networks:
+      - legal-ai-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Baked into the client bundle at BUILD time (see frontend/Dockerfile
+        # comment) - for local docker-compose testing, localhost:8000 is
+        # correct because the browser (not the frontend container) talks to
+        # the backend directly. In a real multi-host deployment, this must
+        # be the backend's actual public URL, and the image must be rebuilt
+        # if that URL ever changes.
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - legal-ai-network
+
+networks:
+  legal-ai-network:
+    driver: bridge
+
+volumes:
+  qdrant_data:
+  es_data:
+  backend_uploads:
+  backend_processed:
+  model_cache:

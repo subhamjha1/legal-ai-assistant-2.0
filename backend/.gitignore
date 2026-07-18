@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.env
+storage/uploads/*
+storage/processed/*
+storage/qdrant_local/*
+storage/bm25_local/*
+!storage/uploads/.gitkeep
+!storage/processed/.gitkeep
+!storage/qdrant_local/.gitkeep
+!storage/bm25_local/.gitkeep
+.pytest_cache/
+*.egg-info/
+venv/
+.venv/

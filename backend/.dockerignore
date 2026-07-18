@@ -1,0 +1,29 @@
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Local runtime data - never bake uploaded documents or local indexes into
+# an image; these are mounted as volumes in docker-compose instead.
+storage/uploads/*
+storage/processed/*
+storage/qdrant_local/*
+storage/bm25_local/*
+!storage/**/.gitkeep
+
+# Test artifacts and sample fixtures aren't needed at runtime.
+tests/
+sample_docs/
+evaluation/results/*
+!evaluation/results/.gitkeep
+
+.git/
+.gitignore
+*.md
+Dockerfile
+docker-compose.yml

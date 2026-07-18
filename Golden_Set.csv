@@ -1,0 +1,19 @@
+Sample Query,Ground Truth Answer,Source Document,Page Number,Category
+Which court heard this case?,The High Court of Delhi at New Delhi heard this case.,sample_legal_doc_final.pdf,1,fact_lookup
+What is the case number of this matter?,The case number is 1234/2024.,sample_legal_doc_final.pdf,1,fact_lookup
+Who is the petitioner in this case?,Acme Corporation is the petitioner.,sample_legal_doc_final.pdf,1,fact_lookup
+Who is the respondent in this case?,The State Tax Authority is the respondent.,sample_legal_doc_final.pdf,1,fact_lookup
+Which judge presided over this matter?,The Hon'ble Justice A. Sharma presided over the matter.,sample_legal_doc_final.pdf,1,fact_lookup
+What order does this appeal arise from?,The appeal arises from an order dated 12 March 2023 passed by the Income Tax Appellate Tribunal.,sample_legal_doc_final.pdf,1,fact_lookup
+What did the Income Tax Appellate Tribunal originally hold?,The Tribunal held that the petitioner's claimed deduction under Section 80G was not admissible.,sample_legal_doc_final.pdf,1,holding
+For which assessment year did the petitioner file its tax return?,The petitioner filed its tax return for assessment year 2022-23.,sample_legal_doc_final.pdf,2,fact_lookup
+What amount of deduction did the petitioner claim under Section 80G?,"The petitioner claimed a deduction of Rs. 5,00,000.",sample_legal_doc_final.pdf,2,fact_lookup
+Under which statute and section did the petitioner claim the deduction?,"The petitioner claimed the deduction under Section 80G of the Income Tax Act, 1961.",sample_legal_doc_final.pdf,2,statutory_requirement
+Why did the Assessing Officer disallow the deduction?,"The Assessing Officer disallowed the deduction because the donation receipt did not bear the registration number of the recipient trust, as required under sub-section (5).",sample_legal_doc_final.pdf,2,fact_lookup
+What does Section 80G(5)(iv) require of a donation receipt?,Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund bear the registration number granted by the Commissioner of Income Tax under that sub-section.,sample_legal_doc_final.pdf,3,statutory_requirement
+What was the court's final holding on the disallowance?,The court held that the disallowance was not in accordance with law.,sample_legal_doc_final.pdf,3,holding
+Why did the court find the disallowance unlawful?,The court found the disallowance unlawful because the petitioner had produced a valid registration certificate at the time of the assessment proceedings.,sample_legal_doc_final.pdf,3,holding
+"What tax dispute is at the center of this case, and between whom?",The dispute is between Acme Corporation (petitioner) and the State Tax Authority (respondent) over a disallowed Section 80G donation deduction.,sample_legal_doc_final.pdf,1;2,synthesis
+Summarize the court's overall reasoning in this judgment.,"The Tribunal had disallowed the petitioner's Section 80G deduction because the donation receipt lacked a registration number required under sub-section (5). The court found that this requirement (registration number granted by the Commissioner under Section 80G(5)(iv)) was in fact satisfied, since the petitioner had produced a valid registration certificate during assessment, and therefore held the disallowance was not in accordance with law.",sample_legal_doc_final.pdf,1;2;3,synthesis
+What amount of penalty was imposed on the petitioner in this case?,I could not find supporting evidence.,sample_legal_doc_final.pdf,N/A (not present in document),no_evidence_check
+Who represented the respondent as counsel in this case?,I could not find supporting evidence.,sample_legal_doc_final.pdf,N/A (not present in document),no_evidence_check

@@ -1,0 +1,1179 @@
+{
+  "config": {
+    "top_k": 5,
+    "retrieval_k_for_recall": 5,
+    "latency_budget_seconds": 15.0,
+    "min_avg_answer_correctness": 0.0,
+    "min_avg_faithfulness": 0.0
+  },
+  "total_questions": 18,
+  "results": [
+    {
+      "question_id": "q001",
+      "query": "Which court heard this case?",
+      "category": "fact_lookup",
+      "generated_answer": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an order dated 12 March 2023 passed by the\n   Income Tax Appellate Tribunal, wherein the tribunal held that the\n   petitioner's claimed deduction under Section 80G was not admissible. [C1]",
+      "ground_truth_answer": "The High Court of Delhi at New Delhi heard this case.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": "1.",
+          "snippet": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": null
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.005162130999991632,
+      "retrieval_latency_seconds": 0.002817243999999164,
+      "generation_latency_seconds": 0.0023354599999834136,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.2702702702702703,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.005162130999991632
+      }
+    },
+    {
+      "question_id": "q002",
+      "query": "What is the case number of this matter?",
+      "category": "fact_lookup",
+      "generated_answer": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said sub-section. 5. In view of the above, this Court is of the opinion that the disallowance was not in accordance with law, since the petitioner had produced a valid registration certificate at the time of assessment proceedings. [C1]",
+      "ground_truth_answer": "The case number is 1234/2024.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "structural_label": "4.",
+          "snippet": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": null
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004259618999981285,
+      "retrieval_latency_seconds": 0.002148495000000139,
+      "generation_latency_seconds": 0.0021047119999764163,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.07792207792207793,
+        "citation_precision": 0.0,
+        "citation_recall": 0.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_5": 0.6309297535714575,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004259618999981285
+      }
+    },
+    {
+      "question_id": "q003",
+      "query": "Who is the petitioner in this case?",
+      "category": "fact_lookup",
+      "generated_answer": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said sub-section. 5. In view of the above, this Court is of the opinion that the disallowance was not in accordance with law, since the petitioner had produced a valid registration certificate at the time of assessment proceedings. [C1]",
+      "ground_truth_answer": "Acme Corporation is the petitioner.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "structural_label": "4.",
+          "snippet": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": null
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004365414000005785,
+      "retrieval_latency_seconds": 0.0021813829999928203,
+      "generation_latency_seconds": 0.0021769580000068345,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.07894736842105261,
+        "citation_precision": 0.0,
+        "citation_recall": 0.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_5": 0.6309297535714575,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004365414000005785
+      }
+    },
+    {
+      "question_id": "q004",
+      "query": "Who is the respondent in this case?",
+      "category": "fact_lookup",
+      "generated_answer": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an order dated 12 March 2023 passed by the\n   Income Tax Appellate Tribunal, wherein the tribunal held that the\n   petitioner's claimed deduction under Section 80G was not admissible. [C1]",
+      "ground_truth_answer": "The State Tax Authority is the respondent.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": "1.",
+          "snippet": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": null
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004282831000011811,
+      "retrieval_latency_seconds": 0.0020434569999849828,
+      "generation_latency_seconds": 0.002232984999977816,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.17142857142857143,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004282831000011811
+      }
+    },
+    {
+      "question_id": "q005",
+      "query": "Which judge presided over this matter?",
+      "category": "fact_lookup",
+      "generated_answer": "I could not find supporting evidence.",
+      "ground_truth_answer": "The Hon'ble Justice A. Sharma presided over the matter.",
+      "has_sufficient_evidence": false,
+      "expected_no_evidence": false,
+      "actual_citations": [],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": null
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.003992395999972587,
+      "retrieval_latency_seconds": 0.0019907969999906072,
+      "generation_latency_seconds": 0.00199493099998449,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.0,
+        "citation_precision": 0.0,
+        "citation_recall": 0.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.0,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.003992395999972587
+      }
+    },
+    {
+      "question_id": "q006",
+      "query": "What order does this appeal arise from?",
+      "category": "fact_lookup",
+      "generated_answer": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an order dated 12 March 2023 passed by the\n   Income Tax Appellate Tribunal, wherein the tribunal held that the\n   petitioner's claimed deduction under Section 80G was not admissible. [C1]",
+      "ground_truth_answer": "The appeal arises from an order dated 12 March 2023 passed by the Income Tax Appellate Tribunal.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": "1.",
+          "snippet": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": "1."
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004323620000008077,
+      "retrieval_latency_seconds": 0.0021877410000001873,
+      "generation_latency_seconds": 0.0021283470000241778,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.425,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004323620000008077
+      }
+    },
+    {
+      "question_id": "q007",
+      "query": "What did the Income Tax Appellate Tribunal originally hold?",
+      "category": "holding",
+      "generated_answer": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an order dated 12 March 2023 passed by the\n   Income Tax Appellate Tribunal, wherein the tribunal held that the\n   petitioner's claimed deduction under Section 80G was not admissible. [C1]",
+      "ground_truth_answer": "The Tribunal held that the petitioner's claimed deduction under Section 80G was not admissible.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": "1.",
+          "snippet": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": "1."
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004262277000009362,
+      "retrieval_latency_seconds": 0.0020074280000130784,
+      "generation_latency_seconds": 0.002248490999988917,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.3846153846153846,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004262277000009362
+      }
+    },
+    {
+      "question_id": "q008",
+      "query": "For which assessment year did the petitioner file its tax return?",
+      "category": "fact_lookup",
+      "generated_answer": "2. The relevant facts are that the petitioner filed its tax return for\n   assessment year 2022-23 claiming a deduction of Rs. 5,00,000 under\n   Section 80G of the Income Tax Act, 1961.\n3. The Assessing Officer disallowed the deduction on the ground that\n   the donation receipt did not bear the registration number of the\n   recipient trust as required under sub-section (5). [C1]",
+      "ground_truth_answer": "The petitioner filed its tax return for assessment year 2022-23.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "structural_label": "2.",
+          "snippet": "2. The relevant facts are that the petitioner filed its tax return for\n   assessment year 2022-23 claiming a deduction of Rs. 5,00,000 under\n   Section 80G of the Income Tax Act, 1961.\n3. The..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "structural_label": "2."
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004246988000005558,
+      "retrieval_latency_seconds": 0.0020532769999874745,
+      "generation_latency_seconds": 0.0021868329999961134,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.2894736842105263,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.16666666666666666,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004246988000005558
+      }
+    },
+    {
+      "question_id": "q009",
+      "query": "What amount of deduction did the petitioner claim under Section 80G?",
+      "category": "fact_lookup",
+      "generated_answer": "2. The relevant facts are that the petitioner filed its tax return for\n   assessment year 2022-23 claiming a deduction of Rs. 5,00,000 under\n   Section 80G of the Income Tax Act, 1961.\n3. The Assessing Officer disallowed the deduction on the ground that\n   the donation receipt did not bear the registration number of the\n   recipient trust as required under sub-section (5). [C1]",
+      "ground_truth_answer": "The petitioner claimed a deduction of Rs. 5,00,000.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "structural_label": "2.",
+          "snippet": "2. The relevant facts are that the petitioner filed its tax return for\n   assessment year 2022-23 claiming a deduction of Rs. 5,00,000 under\n   Section 80G of the Income Tax Act, 1961.\n3. The..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "structural_label": "2."
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.0040905120000047646,
+      "retrieval_latency_seconds": 0.001974571999994623,
+      "generation_latency_seconds": 0.0021083849999854465,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.24,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.16666666666666666,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.0040905120000047646
+      }
+    },
+    {
+      "question_id": "q010",
+      "query": "Under which statute and section did the petitioner claim the deduction?",
+      "category": "statutory_requirement",
+      "generated_answer": "2. The relevant facts are that the petitioner filed its tax return for\n   assessment year 2022-23 claiming a deduction of Rs. 5,00,000 under\n   Section 80G of the Income Tax Act, 1961.\n3. The Assessing Officer disallowed the deduction on the ground that\n   the donation receipt did not bear the registration number of the\n   recipient trust as required under sub-section (5). [C1]",
+      "ground_truth_answer": "The petitioner claimed the deduction under Section 80G of the Income Tax Act, 1961.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "structural_label": "2.",
+          "snippet": "2. The relevant facts are that the petitioner filed its tax return for\n   assessment year 2022-23 claiming a deduction of Rs. 5,00,000 under\n   Section 80G of the Income Tax Act, 1961.\n3. The..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "structural_label": "2."
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004711403000015935,
+      "retrieval_latency_seconds": 0.0022635079999986374,
+      "generation_latency_seconds": 0.002439283000001069,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.32911392405063294,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.16666666666666666,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004711403000015935
+      }
+    },
+    {
+      "question_id": "q011",
+      "query": "Why did the Assessing Officer disallow the deduction?",
+      "category": "fact_lookup",
+      "generated_answer": "2. The relevant facts are that the petitioner filed its tax return for\n   assessment year 2022-23 claiming a deduction of Rs. 5,00,000 under\n   Section 80G of the Income Tax Act, 1961.\n3. The Assessing Officer disallowed the deduction on the ground that\n   the donation receipt did not bear the registration number of the\n   recipient trust as required under sub-section (5). [C1]",
+      "ground_truth_answer": "The Assessing Officer disallowed the deduction because the donation receipt did not bear the registration number of the recipient trust, as required under sub-section (5).",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "structural_label": "2.",
+          "snippet": "2. The relevant facts are that the petitioner filed its tax return for\n   assessment year 2022-23 claiming a deduction of Rs. 5,00,000 under\n   Section 80G of the Income Tax Act, 1961.\n3. The..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "structural_label": "3."
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004379975999995622,
+      "retrieval_latency_seconds": 0.002255292999990388,
+      "generation_latency_seconds": 0.0021182950000024903,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.5494505494505495,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.16666666666666666,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004379975999995622
+      }
+    },
+    {
+      "question_id": "q012",
+      "query": "What does Section 80G(5)(iv) require of a donation receipt?",
+      "category": "statutory_requirement",
+      "generated_answer": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said sub-section. 5. In view of the above, this Court is of the opinion that the disallowance was not in accordance with law, since the petitioner had produced a valid registration certificate at the time of assessment proceedings. [C1]",
+      "ground_truth_answer": "Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund bear the registration number granted by the Commissioner of Income Tax under that sub-section.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "structural_label": "4.",
+          "snippet": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "structural_label": "4."
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.003998446999986527,
+      "retrieval_latency_seconds": 0.0019688129999906323,
+      "generation_latency_seconds": 0.0020237100000031205,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.607843137254902,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.003998446999986527
+      }
+    },
+    {
+      "question_id": "q013",
+      "query": "What was the court's final holding on the disallowance?",
+      "category": "holding",
+      "generated_answer": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said sub-section. 5. In view of the above, this Court is of the opinion that the disallowance was not in accordance with law, since the petitioner had produced a valid registration certificate at the time of assessment proceedings. [C1]",
+      "ground_truth_answer": "The court held that the disallowance was not in accordance with law.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "structural_label": "4.",
+          "snippet": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "structural_label": "5."
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.0039809390000016265,
+      "retrieval_latency_seconds": 0.001979096999974672,
+      "generation_latency_seconds": 0.0019952499999931206,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.26506024096385544,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.0039809390000016265
+      }
+    },
+    {
+      "question_id": "q014",
+      "query": "Why did the court find the disallowance unlawful?",
+      "category": "holding",
+      "generated_answer": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said sub-section. 5. In view of the above, this Court is of the opinion that the disallowance was not in accordance with law, since the petitioner had produced a valid registration certificate at the time of assessment proceedings. [C1]",
+      "ground_truth_answer": "The court found the disallowance unlawful because the petitioner had produced a valid registration certificate at the time of the assessment proceedings.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "structural_label": "4.",
+          "snippet": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "structural_label": "5."
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004054367999998476,
+      "retrieval_latency_seconds": 0.0018439910000154214,
+      "generation_latency_seconds": 0.0022046869999883256,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.4086021505376344,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004054367999998476
+      }
+    },
+    {
+      "question_id": "q015",
+      "query": "What tax dispute is at the center of this case, and between whom?",
+      "category": "synthesis",
+      "generated_answer": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said sub-section. 5. In view of the above, this Court is of the opinion that the disallowance was not in accordance with law, since the petitioner had produced a valid registration certificate at the time of assessment proceedings. [C1]",
+      "ground_truth_answer": "The dispute is between Acme Corporation (petitioner) and the State Tax Authority (respondent) over a disallowed Section 80G donation deduction.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "structural_label": "4.",
+          "snippet": "4. Section 80G(5)(iv) requires that the donation receipt issued by an approved institution or fund shall bear the registration number granted by the Commissioner of Income Tax under the said..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": null
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "structural_label": null
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004262937999982341,
+      "retrieval_latency_seconds": 0.0020229179999944336,
+      "generation_latency_seconds": 0.002233535000016218,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.1978021978021978,
+        "citation_precision": 0.0,
+        "citation_recall": 0.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_5": 0.6934264036172708,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004262937999982341
+      }
+    },
+    {
+      "question_id": "q016",
+      "query": "Summarize the court's overall reasoning in this judgment.",
+      "category": "synthesis",
+      "generated_answer": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an order dated 12 March 2023 passed by the\n   Income Tax Appellate Tribunal, wherein the tribunal held that the\n   petitioner's claimed deduction under Section 80G was not admissible. [C1]",
+      "ground_truth_answer": "The Tribunal had disallowed the petitioner's Section 80G deduction because the donation receipt lacked a registration number required under sub-section (5). The court found that this requirement (registration number granted by the Commissioner under Section 80G(5)(iv)) was in fact satisfied, since the petitioner had produced a valid registration certificate during assessment, and therefore held the disallowance was not in accordance with law.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": false,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": "1.",
+          "snippet": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an..."
+        }
+      ],
+      "expected_citations": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": null
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "structural_label": null
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "structural_label": null
+        }
+      ],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004143410000011727,
+      "retrieval_latency_seconds": 0.0020989409999856434,
+      "generation_latency_seconds": 0.002038554999984399,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.34108527131782945,
+        "citation_precision": 1.0,
+        "citation_recall": 0.3333333333333333,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.2,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004143410000011727
+      }
+    },
+    {
+      "question_id": "q017",
+      "query": "What amount of penalty was imposed on the petitioner in this case?",
+      "category": "no_evidence_check",
+      "generated_answer": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an order dated 12 March 2023 passed by the\n   Income Tax Appellate Tribunal, wherein the tribunal held that the\n   petitioner's claimed deduction under Section 80G was not admissible. [C1]",
+      "ground_truth_answer": "I could not find supporting evidence.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": true,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": "1.",
+          "snippet": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an..."
+        }
+      ],
+      "expected_citations": [],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.004120509999978594,
+      "retrieval_latency_seconds": 0.0019415730000105214,
+      "generation_latency_seconds": 0.002172917999985202,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.0,
+        "citation_precision": 0.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.0,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.004120509999978594
+      }
+    },
+    {
+      "question_id": "q018",
+      "query": "Who represented the respondent as counsel in this case?",
+      "category": "no_evidence_check",
+      "generated_answer": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an order dated 12 March 2023 passed by the\n   Income Tax Appellate Tribunal, wherein the tribunal held that the\n   petitioner's claimed deduction under Section 80G was not admissible. [C1]",
+      "ground_truth_answer": "I could not find supporting evidence.",
+      "has_sufficient_evidence": true,
+      "expected_no_evidence": true,
+      "actual_citations": [
+        {
+          "chunk_ref": "C1",
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "structural_label": "1.",
+          "snippet": "IN THE HIGH COURT OF DELHI AT NEW DELHI\nCASE NO. 1234/2024\nPETITIONER: Acme Corporation\nRESPONDENT: State Tax Authority\nBEFORE THE HON'BLE JUSTICE A. SHARMA\nJUDGMENT\n1. This appeal arises from an..."
+        }
+      ],
+      "expected_citations": [],
+      "retrieved_chunks": [
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 1,
+          "page_end": 1,
+          "rank": 1
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 3,
+          "page_end": 3,
+          "rank": 2
+        },
+        {
+          "document": "sample_legal_doc_final.pdf",
+          "page_start": 2,
+          "page_end": 2,
+          "rank": 3
+        }
+      ],
+      "total_latency_seconds": 0.003931915000009667,
+      "retrieval_latency_seconds": 0.0019741840000051525,
+      "generation_latency_seconds": 0.001951872999995885,
+      "token_usage": null,
+      "error": null,
+      "metrics": {
+        "exact_match": 0.0,
+        "answer_correctness": 0.0,
+        "citation_precision": 0.0,
+        "citation_recall": 1.0,
+        "retrieval_recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "faithfulness": 0.0,
+        "hallucinated": 1.0,
+        "latency_seconds": 0.003931915000009667
+      }
+    }
+  ],
+  "aggregate_metrics": {
+    "avg_answer_correctness": 0.25758971268030467,
+    "avg_citation_precision": 0.6666666666666666,
+    "avg_citation_recall": 0.7407407407407408,
+    "avg_exact_match": 0.0,
+    "avg_faithfulness": 0.15925925925925927,
+    "avg_hallucinated": 1.0,
+    "avg_latency_seconds": 0.004253871888887299,
+    "avg_mrr": 0.9166666666666666,
+    "avg_ndcg_at_5": 0.9419603283755659,
+    "avg_retrieval_recall_at_5": 1.0,
+    "total_input_tokens": 0.0,
+    "total_output_tokens": 0.0,
+    "questions_with_token_usage": 0.0,
+    "total_questions": 18.0,
+    "errored_questions": 0.0
+  },
+  "run_started_at": "2026-07-17T10:18:09.300937+00:00",
+  "run_finished_at": "2026-07-17T10:18:09.379123+00:00",
+  "model_used": "DemoLLM"
+}

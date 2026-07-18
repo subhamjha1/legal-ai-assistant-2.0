@@ -1,0 +1,201 @@
+name: CI
+
+# Runs on every push/PR. Unlike this project's development sandbox, GitHub's
+# hosted runners have full internet access - so this pipeline genuinely can
+# (and does) install real dependencies, build real Docker images, and could
+# even exercise the real BGE/Elasticsearch paths this sandbox's tests
+# deliberately avoid. It doesn't force those paths by default (keeping CI
+# fast and not dependent on a 1.3GB model download every run), but nothing
+# here is faked the way parts of local development in this sandbox had to
+# be - see backend/README.md and frontend/README.md for exactly which gaps
+# were sandbox-specific, not code-specific.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-tests:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install Tesseract (OCR path)
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run test suite
+        run: PYTHONPATH=. pytest tests/ -v --tb=short
+
+  frontend-build:
+    name: Frontend build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:8000
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Lint backend (ruff)
+        working-directory: backend
+        run: |
+          pip install ruff
+          ruff check app/ evaluation/ tests/ --output-format=github
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Lint frontend (eslint)
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run lint
+
+  docker-build:
+    name: Docker build validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: false
+          load: true
+          tags: legal-ai-backend:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: false
+          load: true
+          tags: legal-ai-frontend:ci
+          build-args: |
+            NEXT_PUBLIC_API_URL=http://localhost:8000
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Smoke test images actually start
+        run: |
+          docker run -d --name backend-smoke -p 8000:8000 legal-ai-backend:ci
+          docker run -d --name frontend-smoke -p 3000:3000 legal-ai-frontend:ci
+          sleep 15
+          curl -f http://localhost:8000/health || (docker logs backend-smoke && exit 1)
+          curl -f http://localhost:3000/api/health || (docker logs frontend-smoke && exit 1)
+          docker stop backend-smoke frontend-smoke
+
+  deployment-readiness:
+    name: Deployment readiness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate docker-compose.yml
+        run: |
+          pip install pyyaml
+          python3 -c "
+          import yaml
+          with open('docker-compose.yml') as f:
+              data = yaml.safe_load(f)
+          assert set(data['services']) == {'qdrant', 'elasticsearch', 'backend', 'frontend'}, 'unexpected service set'
+          assert 'healthcheck' in data['services']['backend'], 'backend missing healthcheck'
+          assert 'healthcheck' in data['services']['frontend'], 'frontend missing healthcheck'
+          print('docker-compose.yml: OK')
+          "
+
+      - name: Validate render.yaml
+        run: |
+          python3 -c "
+          import yaml
+          with open('render.yaml') as f:
+              data = yaml.safe_load(f)
+          names = {s['name'] for s in data['services']}
+          assert names == {'legal-ai-backend', 'legal-ai-frontend'}, 'unexpected render services'
+          print('render.yaml: OK')
+          "
+
+      - name: Validate railway.json (backend + frontend)
+        run: |
+          python3 -c "
+          import json
+          for path in ['backend/railway.json', 'frontend/railway.json']:
+              with open(path) as f:
+                  data = json.load(f)
+              assert 'build' in data and 'deploy' in data, f'{path} missing required sections'
+          print('railway.json (both services): OK')
+          "
+
+      - name: Validate vercel.json
+        run: |
+          python3 -c "
+          import json
+          with open('frontend/vercel.json') as f:
+              data = json.load(f)
+          assert data['framework'] == 'nextjs'
+          print('vercel.json: OK')
+          "
+
+      - name: Check required env vars are documented
+        run: |
+          for var in ANTHROPIC_API_KEY QDRANT_MODE KEYWORD_SEARCH_PROVIDER EMBEDDING_PROVIDER; do
+            grep -q "$var" backend/.env.example || (echo "Missing $var in backend/.env.example" && exit 1)
+          done
+          grep -q "NEXT_PUBLIC_API_URL" frontend/.env.example || (echo "Missing NEXT_PUBLIC_API_URL in frontend/.env.example" && exit 1)
+          echo "Required env vars documented: OK"
