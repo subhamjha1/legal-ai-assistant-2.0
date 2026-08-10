@@ -1,0 +1,6 @@
+query,ground_truth,document,page
+What is the definition of a capital asset under the Internal Revenue Code?,"A capital asset is property held by the taxpayer, with specific statutory exclusions such as inventory and depreciable business property.",internal_revenue_code_excerpt.pdf,12
+What did the Supreme Court hold in the landmark capital gains case regarding realization?,"The Court held that gain must be realized through a closed transaction before it is taxable.",supreme_court_capital_gains_judgment.pdf,4
+Under what section can a taxpayer deduct ordinary and necessary business expenses?,Section 162 allows a deduction for all ordinary and necessary expenses paid or incurred in carrying on a trade or business.,internal_revenue_code_excerpt.pdf,45
+What is the IRS's position on qualifying like-kind exchanges after the 2017 tax reform?,"Like-kind exchange treatment under Section 1031 is now limited to real property only.",irs_regulation_1031_exchanges.pdf,3
+How does the commentary describe the practical effect of the step-transaction doctrine?,"The commentary explains that courts may collapse formally separate steps into a single transaction to determine its substance for tax purposes.",tax_law_commentary_step_transaction.pdf,7

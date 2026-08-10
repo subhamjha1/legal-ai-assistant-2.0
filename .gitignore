@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.env
+venv/
+.venv/
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/golden/golden_dataset.csv
+docs/eval_reports/*
+!docs/eval_reports/.gitkeep
+.pytest_cache/
+*.egg-info/
